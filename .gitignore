@@ -8,3 +8,7 @@ dist
 .coverage
 build/
 .noseids
+
+# for cytnon
+*.c
+*.so

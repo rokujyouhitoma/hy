@@ -19,11 +19,13 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 
+import glob
 import os
 import re
 import sys
 
 from setuptools import find_packages, setup
+from Cython.Build import cythonize
 
 PKG = "hy"
 VERSIONFILE = os.path.join(PKG, "version.py")
@@ -52,7 +54,10 @@ if sys.version_info[:2] < (2, 7):
 if os.name == 'nt':
     install_requires.append('pyreadline==2.0')
 
+pyx_modules = glob.glob("hy/*.py") + glob.glob("hy/*/*.py") + glob.glob("hy/*/*/*.py") + glob.glob("hy/*/*/*.py")
+
 setup(
+    ext_modules=cythonize(pyx_modules),
     name=PKG,
     version=__version__,
     install_requires=install_requires,

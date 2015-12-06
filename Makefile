@@ -77,5 +77,7 @@ clean:
 	@${RM} -r -f dist
 	@${RM} -r -f *.egg-info
 	@${RM} -r -f docs/_build
+	@find . -name "*.c" -exec rm {} \;
+	@find . -name "*.so" -exec rm {} \;
 
 .PHONY: docs
